@@ -1,0 +1,91 @@
+{
+    "class": "go.GraphLinksModel",
+    "dataFormat": "flow-1",
+    "nodeKeyProperty": "id",
+    "nodeCategoryProperty": "class",
+    "linkFromPortIdProperty": "fromPort",
+    "linkToPortIdProperty": "toPort",
+    "nodeDataArray": [
+        {
+            "class": "Flow.Begin",
+            "name": "Begin",
+            "loc": "-868.171875 -1295.5",
+            "id": "eedee636-bba3-468d-984b-ccf7886dffea",
+            "options": {
+                "inputParameters": [
+                    "()=>{",
+                    "  return {",
+                    "//    parm1: 'parm1_default_value',",
+                    "//    parm2: 'parm2_default_value'",
+                    "  };",
+                    "}"
+                ]
+            },
+            "clazz": "Flow.Begin"
+        },
+        {
+            "class": "Flow.End",
+            "loc": "-886.171875 -934.5",
+            "id": "308b1479-4bb0-43e7-9339-9424e37f857c",
+            "options": {
+                "getTransition": [
+                    "() => { return ''; }"
+                ]
+            },
+            "clazz": "Flow.End"
+        },
+        {
+            "class": "Flow.Subflow",
+            "loc": "-889.171875 -1028.5",
+            "id": "ac64c931-eb20-43cb-9653-6b416746ba2f",
+            "options": {
+                "inputParameters": [
+                    "() => {return {}; }"
+                ],
+                "getTransition": [
+                    "(_result) => {",
+                    "    return _result.transition;",
+                    "}"
+                ],
+                "subflowId": "../flowB"
+            },
+            "name": "flowB",
+            "clazz": "Flow.Subflow"
+        },
+        {
+            "class": "Flow.Eval",
+            "loc": "-852.171875 -1187.5",
+            "id": "7262e374-67a8-4e4d-86c7-5365cf6384ca",
+            "options": {
+                "Script": [
+                    "() => {",
+                    "    result.hi = 'howdy!';",
+                    "    return '';",
+                    "}"
+                ]
+            },
+            "clazz": "Flow.Eval",
+            "name": ""
+        }
+    ],
+    "linkDataArray": [
+        {
+            "from": "eedee636-bba3-468d-984b-ccf7886dffea",
+            "to": "7262e374-67a8-4e4d-86c7-5365cf6384ca",
+            "fromPort": "",
+            "toPort": ""
+        },
+        {
+            "from": "ac64c931-eb20-43cb-9653-6b416746ba2f",
+            "to": "308b1479-4bb0-43e7-9339-9424e37f857c",
+            "fromPort": "",
+            "toPort": ""
+        },
+        {
+            "from": "7262e374-67a8-4e4d-86c7-5365cf6384ca",
+            "to": "ac64c931-eb20-43cb-9653-6b416746ba2f",
+            "fromPort": "",
+            "toPort": ""
+        }
+    ]
+}

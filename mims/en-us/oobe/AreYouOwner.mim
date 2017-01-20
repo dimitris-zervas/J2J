@@ -1,0 +1,109 @@
+{
+	"mim_id": "AreYouOwner",
+	"skill_id": "oobe",
+	"mim_type": "question",
+	"rule_name": "rules/en-us/oobe/AreYouOwner.fst",
+	"screen_slots_available": true,
+	"timeout": 4,
+	"max_tries": 3,
+	"force_confirmation": false,
+	"barge_in": true,
+	"photo_quality_light": false,
+	"prompts": [
+		{
+			"mim_id": "AreYouOwner",
+			"prompt_category": "Entry-Core",
+			"prompt_sub_category": "Q",
+			"index": 1,
+			"condition": "",
+			"prompt": "Are you ${owner}?",
+			"media": "TTS",
+			"extra": "",
+			"prompt_id": "AreYouOwner_Q_1",
+			"weight": 1
+		},
+		{
+			"mim_id": "AreYouOwner",
+			"prompt_category": "Errors",
+			"prompt_sub_category": "NI",
+			"index": 1,
+			"condition": "",
+			"prompt": "I'm supposed to meet ${owner}. Is that you?",
+			"media": "TTS",
+			"extra": "",
+			"prompt_id": "AreYouOwner_NI_1",
+			"weight": 1
+		},
+		{
+			"mim_id": "AreYouOwner",
+			"prompt_category": "Errors",
+			"prompt_sub_category": "NI",
+			"index": 2,
+			"condition": "",
+			"prompt": "I'm trying to find my new owner, ${owner}. Is that you?",
+			"media": "TTS",
+			"extra": "",
+			"prompt_id": "AreYouOwner_NI_2",
+			"weight": 1
+		},
+		{
+			"mim_id": "AreYouOwner",
+			"prompt_category": "Errors",
+			"prompt_sub_category": "NM",
+			"index": 1,
+			"condition": "",
+			"prompt": "I didn't catch that. Are you ${owner}?",
+			"media": "TTS",
+			"extra": "",
+			"prompt_id": "AreYouOwner_NM_1",
+			"weight": 1
+		},
+		{
+			"mim_id": "AreYouOwner",
+			"prompt_category": "Errors",
+			"prompt_sub_category": "NM",
+			"index": 2,
+			"condition": "",
+			"prompt": "Maybe I'm still groggy from the trip. Will you tap yes or no on my screen, to tell me if you're ${owner}?",
+			"media": "TTS",
+			"extra": "",
+			"prompt_id": "AreYouOwner_NM_2",
+			"weight": 1
+		}
+	],
+	"es_auto_tagging": true,
+	"notes": "Rule slots: yes,no\n",
+	"gui": {
+		"type": "Menu",
+		"data": {
+			"title": "",
+			"buttons": [
+				{
+					"label": "yes",
+					"color": "confirm",
+					"icon": "jibo://resources/actionIcons/ok.png",
+					"utterance": "yes",
+					"notes": ""
+				},
+				{
+					"label": "no",
+					"color": "cancel",
+					"icon": "jibo://resources/actionIcons/cancel.png",
+					"utterance": "no",
+					"notes": ""
+				},
+				{
+					"label": "no I'm Jane",
+					"color": "default",
+					"icon": "",
+					"utterance": "no I'm Jane",
+					"notes": ""
+				}
+			]
+		}
+	},
+	"no_matches_for_gui": 2,
+	"no_inputs_for_gui": 2,
+	"parse_all_asr": false,
+	"thanks_handling": "ignore"
+}

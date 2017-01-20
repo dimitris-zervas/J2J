@@ -1,0 +1,1 @@
+TopRule = ($* what time is it {skill='\@be/template'} $*);

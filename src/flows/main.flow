@@ -1,0 +1,293 @@
+{
+    "class": "go.GraphLinksModel",
+    "dataFormat": "flow-1",
+    "nodeKeyProperty": "id",
+    "nodeCategoryProperty": "class",
+    "linkFromPortIdProperty": "fromPort",
+    "linkToPortIdProperty": "toPort",
+    "nodeDataArray": [
+        {
+            "class": "Flow.Begin",
+            "name": "Begin",
+            "loc": "-308.171875 -500.5",
+            "id": "943fb90c-8699-4eb6-9de1-a1cddc841c94",
+            "options": {
+                "inputParameters": [
+                    "()=>{",
+                    "  return {",
+                    "//    parm1: 'parm1_default_value',",
+                    "//    parm2: 'parm2_default_value'",
+                    "  };",
+                    "}"
+                ]
+            },
+            "clazz": "Flow.Begin"
+        },
+        {
+            "class": "Flow.End",
+            "loc": "-367.171875 185.5",
+            "id": "a42f06cc-3846-4a21-807f-c75205334c7a",
+            "options": {
+                "getTransition": [
+                    "() => { return ''; }"
+                ]
+            },
+            "clazz": "Flow.End"
+        },
+        {
+            "class": "Subtree",
+            "asset-pack": "core",
+            "loc": "-306.171875 55.5",
+            "id": "b9f977cb-76a3-411a-b348-b5a9a001623e",
+            "options": {
+                "getNotepad": [
+                    "() => {",
+                    "    return {};",
+                    "}"
+                ],
+                "onResult": [
+                    "(treeResult) => {",
+                    "}"
+                ],
+                "behaviorPath": "../behaviors/idle"
+            },
+            "name": "idle",
+            "clazz": "Subtree"
+        },
+        {
+            "class": "Flow.Subflow",
+            "loc": "-372.171875 -94.5",
+            "id": "4f85281a-b6ba-454a-8f40-2c85b74e6243",
+            "options": {
+                "inputParameters": [
+                    "() => {return {",
+                    "  age: 2.35,",
+                    "  gender: 'robot'",
+                    "}; }"
+                ],
+                "getTransition": [
+                    "(_result) => {",
+                    "    return _result.transition;",
+                    "}"
+                ],
+                "subflowId": "./lib/flow-mi"
+            },
+            "name": "flow-mi",
+            "clazz": "Flow.Subflow"
+        },
+        {
+            "class": "Mim.Question",
+            "asset-pack": "core",
+            "loc": "-309.171875 -236.5",
+            "id": "d3c4e1ab-a652-497a-8f51-dd352abdc741",
+            "options": {
+                "getConfig": [
+                    "() =>  {",
+                    "\treturn {",
+                    "\t\tpromptData: {",
+                    "\t\t\towner: 'My Owner'",
+                    "//       \"prompt\": \"Are you ${owner}?\",",
+                    "//       \"prompt\": \"I'm supposed to meet ${owner}. Is that you?\",",
+                    "//       \"prompt\": \"<sfx type='SSA.worried.01'> I'm trying to find my new owner, ${owner}. Is that you?\",",
+                    "//       \"prompt\": \"I didn't catch that. Are you ${owner}?\",",
+                    "//       \"prompt\": \"<sfx type='SSA.embarrassed.01'>Maybe I'm still groggy from the trip. Will you tap yes or no on my screen, to tell me if you're ${owner}?\",",
+                    "\t\t}",
+                    "\t};",
+                    "}"
+                ],
+                "onStatus": [
+                    "(status) => {",
+                    "\tlet mimState = status.state;",
+                    "\tlet asrResults = status.asrResults;",
+                    "\tlet speakerIds = status.speakerIds;",
+                    "}"
+                ],
+                "onFailure": [
+                    "(results) => {",
+                    "\tlet mimState = results.state;",
+                    "\tlet asrResults = results.asrResults;",
+                    "\tlet speakerIds = results.speakerIds;",
+                    "\tlet exception = results.exception;",
+                    "}"
+                ],
+                "mimPath": "mims/en-us/oobe/AreYouOwner.mim",
+                "onSuccess": [
+                    "(results) => {",
+                    "\tlet mimState = results.state;",
+                    "\tlet asrResults = results.asrResults;",
+                    "\tlet speakerIds = results.speakerIds;",
+                    "\tlet transition = results.firstGrammarTag;",
+                    "\treturn transition;",
+                    "\t//Transitions: yes,no",
+                    "}"
+                ],
+                "getPromptData": [
+                    "() => {",
+                    "\treturn {",
+                    "\t\towner: \"Cynthia\"",
+                    "\t};",
+                    "}"
+                ]
+            },
+            "name": "Are You Owner",
+            "clazz": "Mim.Question"
+        },
+        {
+            "class": "Flow.Eval",
+            "loc": "-88.171875 -233.5",
+            "id": "73aba64a-aaf3-40c5-87a6-60e9cf9f2316",
+            "options": {
+                "Script": [
+                    "() => {",
+                    "    return '';",
+                    "}"
+                ]
+            },
+            "name": "no-op",
+            "clazz": "Flow.Eval"
+        },
+        {
+            "class": "Flow.Comment",
+            "text": "Jibo Flow Example",
+            "loc": "-567.0700174991539 -611.924704999154",
+            "id": "c4681938-f441-4563-8354-062a05bc724b",
+            "options": {},
+            "size": "218 94",
+            "clazz": "Flow.Comment"
+        },
+        {
+            "class": "Mim.Announcement",
+            "asset-pack": "core",
+            "loc": "-360.015625 -361.5",
+            "id": "ec26ae4e-0bbe-4ee2-ad93-8ec4c0a9b3f2",
+            "options": {
+                "getConfig": [
+                    "() =>  {",
+                    "\treturn {",
+                    "\t\tpromptData: {",
+                    "\t\t}",
+                    "\t};",
+                    "}"
+                ],
+                "onStatus": [
+                    "(status) => {",
+                    "\tlet mimState = status.state;",
+                    "\tlet asrResults = status.asrResults;",
+                    "\tlet speakerIds = status.speakerIds;",
+                    "}"
+                ],
+                "onFailure": [
+                    "(results) => {",
+                    "\tlet mimState = results.state;",
+                    "\tlet asrResults = results.asrResults;",
+                    "\tlet speakerIds = results.speakerIds;",
+                    "\tlet exception = results.exception;",
+                    "}"
+                ],
+                "mimPath": "mims/en-us/oobe/StartWithYou.mim",
+                "onSuccess": [
+                    "(results) => {",
+                    "\tlet mimState = results.state;",
+                    "\tlet asrResults = results.asrResults;",
+                    "\tlet speakerIds = results.speakerIds;",
+                    "\tlet transition = results.firstGrammarTag;",
+                    "\t//Transitions: ",
+                    "}"
+                ]
+            },
+            "name": "Start With You",
+            "clazz": "Mim.Announcement"
+        },
+        {
+            "class": "Flow.Comment",
+            "text": "Call a Behavior Tree",
+            "loc": "-174.171875 54.5",
+            "options": {},
+            "id": "f9c33017-795d-4104-9898-a5813dbb71a3",
+            "clazz": "Flow.Comment"
+        },
+        {
+            "class": "Flow.Comment",
+            "text": "Call a Subflow",
+            "loc": "-490.171875 -94.5",
+            "id": "e49ad406-1408-4ecf-9c24-78078eb13ba4",
+            "options": {},
+            "clazz": "Flow.Comment"
+        },
+        {
+            "class": "Flow.Comment",
+            "text": "A yes-no question",
+            "loc": "-461.171875 -234.5",
+            "id": "61d4f094-8341-477b-a312-72e1f0a041c6",
+            "options": {},
+            "clazz": "Flow.Comment"
+        },
+        {
+            "class": "Flow.Comment",
+            "text": "Announcement",
+            "loc": "-502.171875 -362.5",
+            "id": "8a829304-1e03-47ad-90fa-e6f9a6bf8d49",
+            "options": {},
+            "clazz": "Flow.Comment"
+        },
+        {
+            "class": "Flow.Catch",
+            "loc": "-112.171875 -469.5",
+            "id": "5f29c172-2b9e-46b3-bbe6-45b54f32014f",
+            "options": {},
+            "name": "~InteractionError",
+            "clazz": "Flow.Catch"
+        }
+    ],
+    "linkDataArray": [
+        {
+            "from": "b9f977cb-76a3-411a-b348-b5a9a001623e",
+            "to": "a42f06cc-3846-4a21-807f-c75205334c7a",
+            "fromPort": "",
+            "toPort": ""
+        },
+        {
+            "from": "4f85281a-b6ba-454a-8f40-2c85b74e6243",
+            "to": "b9f977cb-76a3-411a-b348-b5a9a001623e",
+            "fromPort": "",
+            "toPort": ""
+        },
+        {
+            "from": "943fb90c-8699-4eb6-9de1-a1cddc841c94",
+            "to": "ec26ae4e-0bbe-4ee2-ad93-8ec4c0a9b3f2",
+            "fromPort": "",
+            "toPort": ""
+        },
+        {
+            "from": "d3c4e1ab-a652-497a-8f51-dd352abdc741",
+            "to": "4f85281a-b6ba-454a-8f40-2c85b74e6243",
+            "fromPort": "",
+            "toPort": ""
+        },
+        {
+            "from": "d3c4e1ab-a652-497a-8f51-dd352abdc741",
+            "to": "73aba64a-aaf3-40c5-87a6-60e9cf9f2316",
+            "fromPort": "",
+            "toPort": "",
+            "text": "no"
+        },
+        {
+            "from": "73aba64a-aaf3-40c5-87a6-60e9cf9f2316",
+            "to": "d3c4e1ab-a652-497a-8f51-dd352abdc741",
+            "fromPort": "",
+            "toPort": ""
+        },
+        {
+            "from": "ec26ae4e-0bbe-4ee2-ad93-8ec4c0a9b3f2",
+            "to": "d3c4e1ab-a652-497a-8f51-dd352abdc741",
+            "fromPort": "",
+            "toPort": ""
+        },
+        {
+            "from": "5f29c172-2b9e-46b3-bbe6-45b54f32014f",
+            "to": "ec26ae4e-0bbe-4ee2-ad93-8ec4c0a9b3f2",
+            "fromPort": "",
+            "toPort": ""
+        }
+    ]
+}

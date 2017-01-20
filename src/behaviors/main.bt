@@ -1,0 +1,35 @@
+{
+    "3": {
+        "id": 3,
+        "class": "Sequence",
+        "name": "",
+        "options": {},
+        "asset-pack": "core",
+        "children": [
+            "4218610d-d8af-4cde-bbe3-7ceb813ea86b"
+        ],
+        "decorators": []
+    },
+    "meta": {
+        "version": 1
+    },
+    "4218610d-d8af-4cde-bbe3-7ceb813ea86b": {
+        "id": "4218610d-d8af-4cde-bbe3-7ceb813ea86b",
+        "class": "Subtree",
+        "name": "",
+        "options": {
+            "behaviorPath": "./idle",
+            "getNotepad": [
+                "() => {",
+                "    return {};",
+                "}"
+            ],
+            "onResult": [
+                "(treeResult) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": 3
+    }
+}

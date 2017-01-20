@@ -1,0 +1,97 @@
+{
+  "name": "@be/template",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "jibo": {
+    "main": "index.html",
+    "type": "asset-pack",
+    "launchRule": "launch.rule",
+    "prompt": "Do something",
+    "display-name": "template"
+  },
+  "license": "UNLICENSED",
+  "config": {
+      "watch": "src",
+      "src": "src/**.js",
+      "rules": "rules",
+      "flows_src": "src/flows",
+      "rules_src": "src/rules",
+      "app": "src/index.ts",
+      "bundle": "index.js",
+      "map": "index.js.map",
+      "tslint": "tslint.json"
+  },
+  "scripts": {
+    "start": "npm run watch",
+    "clean": "cross-conf-env rimraf npm_package_config_behaviors npm_package_config_rules npm_package_config_bundle npm_package_config_map",
+    "lint": "cross-conf-env tslint -c npm_package_config_tslint npm_package_config_app || exit 0",
+    "lint:flows": "cross-conf-env flowlint -d npm_package_config_flows_src",
+    "prebuild": "npm run build:rules && npm run lint && npm run lint:flows",
+    "build": "npm run build:ts",
+    "build:ts": "cross-conf-env browserify --extension=bt --extension=flow -s npm_package_name npm_package_config_app -o npm_package_config_bundle -p [tsify --target=\"es6\"] -p mapstraction -t [preprocessify --contextFile build/debug.json] --no-bundle-external --debug",
+    "build:rules": "cross-conf-env rulify -o npm_package_config_rules -i npm_package_config_rules_src",
+    "watch:lint": "cross-conf-env watch 'npm run lint' npm_package_config_watch || exit 0",
+    "watch:ts": "cross-conf-env watchify  --extension=bt --extension=flow -s npm_package_name npm_package_config_app -o npm_package_config_bundle -p [tsify --target=\"es6\"] -p mapstraction -t [preprocessify --contextFile build/debug.json] --no-bundle-external --debug -dv",
+    "watch:rules": "cross-conf-env watch 'npm run build:rules' npm_package_config_rules_src",
+    "watch": "parallelshell 'npm run watch:ts' 'npm run watch:lint' 'npm run watch:rules'",
+    "prerelease": "npm run clean && npm run build:rules && npm run prebuild",
+    "release": "cross-conf-env browserify --extension=bt --extension=flow -s npm_package_name npm_package_config_app -o npm_package_config_bundle -p [tsify --removeComments --target=\"es6\"] -t [preprocessify --contextFile build/release.json] --no-bundle-external",
+    "prepublish:release": "npm run release",
+    "prepublish:debug": "npm run build",
+    "publish:debug": "npm publish",
+    "publish:release": "npm publish",
+    "postpublish": "git push && git push --tags",
+    "sync": "sync $npm_package_name || exit 0",
+    "addsshkey": "addsshkey || exit 0"
+  },
+  "browserify": {
+    "transform": [
+      "jibo-dev/browserify-transform"
+    ]
+  },
+  "eslintConfig": {
+    "extends": "eslint:recommended",
+    "rules": {
+      "no-console": 0,
+      "no-debugger": 1
+    },
+    "parserOptions": {
+      "ecmaVersion": 6,
+      "sourceType": "module"
+    },
+    "env": {
+      "browser": true,
+      "node": true
+    },
+    "globals": {
+      "jibo": true,
+      "PIXI": true
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:jiborobot/template.git"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "dependencies_save": {
+      "jibo-anim-db-animations": "^2.0.0"
+  },
+  "devDependencies": {
+      "browserify": "^13.1.0",
+      "cross-conf-env": "^1.0.6",
+      "jibo": "5.8.1",
+      "jibo-dev": "^1.1.0",
+      "mapstraction": "^1.0.0",
+      "parallelshell": "^2.0.0",
+      "preprocessify": "^1.0.1",
+      "rimraf": "^2.5.4",
+      "tsify": "^1.0.7",
+      "tslint": "^3.15.1",
+      "typescript": "^2.0.0",
+      "watch": "^0.19.2",
+      "watchify": "^3.7.0"
+  }
+}

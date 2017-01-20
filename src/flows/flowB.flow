@@ -1,0 +1,46 @@
+{
+    "class": "go.GraphLinksModel",
+    "dataFormat": "flow-1",
+    "nodeKeyProperty": "id",
+    "nodeCategoryProperty": "class",
+    "linkFromPortIdProperty": "fromPort",
+    "linkToPortIdProperty": "toPort",
+    "nodeDataArray": [
+        {
+            "class": "Flow.Begin",
+            "name": "Begin",
+            "loc": "-172.171875 -321.5",
+            "id": "ccb8a0f6-c517-4728-88c6-ef7ffc71526f",
+            "options": {
+                "inputParameters": [
+                    "()=>{",
+                    "  return {",
+                    "//    parm1: 'parm1_default_value',",
+                    "//    parm2: 'parm2_default_value'",
+                    "  };",
+                    "}"
+                ]
+            },
+            "clazz": "Flow.Begin"
+        },
+        {
+            "class": "Flow.End",
+            "loc": "-162.171875 -98.5",
+            "id": "0c351594-f4b1-46a0-9f91-3b43a033ce4e",
+            "options": {
+                "getTransition": [
+                    "() => { return ''; }"
+                ]
+            },
+            "clazz": "Flow.End"
+        }
+    ],
+    "linkDataArray": [
+        {
+            "from": "ccb8a0f6-c517-4728-88c6-ef7ffc71526f",
+            "to": "0c351594-f4b1-46a0-9f91-3b43a033ce4e",
+            "fromPort": "",
+            "toPort": ""
+        }
+    ]
+}

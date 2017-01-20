@@ -1,0 +1,101 @@
+{
+    "class": "go.GraphLinksModel",
+    "dataFormat": "flow-1",
+    "nodeKeyProperty": "id",
+    "nodeCategoryProperty": "class",
+    "linkFromPortIdProperty": "fromPort",
+    "linkToPortIdProperty": "toPort",
+    "nodeDataArray": [
+        {
+            "class": "Flow.Begin",
+            "name": "Begin",
+            "loc": "-617.171875 -1424.5",
+            "id": "999ddffa-ba21-4bb3-a7c4-01ec94bd90d8",
+            "options": {
+                "inputParameters": [
+                    "()=>{",
+                    "  return {",
+                    "    age: 0,",
+                    "    gender: ''",
+                    "  };",
+                    "}"
+                ]
+            },
+            "clazz": "Flow.Begin"
+        },
+        {
+            "class": "Flow.End",
+            "loc": "-625.171875 -960.5",
+            "id": "9f3bb32e-3eb0-4c24-8a7e-9ecb4938eb91",
+            "options": {
+                "getTransition": [
+                    "() => { return ''; }"
+                ]
+            },
+            "clazz": "Flow.End"
+        },
+        {
+            "class": "Flow.Subflow",
+            "loc": "-600.171875 -1154.5",
+            "id": "a2fa7645-4f30-471b-8f5b-673eb8606539",
+            "options": {
+                "inputParameters": [
+                    "()=>{",
+                    "  return {",
+                    "    gender: '',",
+                    "    age: 0",
+                    "  };",
+                    "}"
+                ],
+                "getTransition": [
+                    "(subflow_result_object) => {",
+                    "    console.log('subflow_result_object.hi from utils: ' + subflow_result_object.hi);",
+                    "    return subflow_result_object.transition;",
+                    "}"
+                ],
+                "subflowId": "../subs/utils"
+            },
+            "name": "utils",
+            "clazz": "Flow.Subflow"
+        },
+        {
+            "class": "TextToSpeechJs",
+            "asset-pack": "core",
+            "loc": "-586.171875 -1279.5",
+            "options": {
+                "getWords": [
+                    "(callback) => {",
+                    "    callback(`Hello my age is ${notepad.params.age} and my gender is ${notepad.params.gender}.`);",
+                    "}"
+                ],
+                "onWord": [
+                    "(word) => {",
+                    "}"
+                ]
+            },
+            "id": "75be6912-ed8b-4853-8f2e-7acf3b5c2a07",
+            "name": "My Age and Gender",
+            "clazz": "TextToSpeechJs"
+        }
+    ],
+    "linkDataArray": [
+        {
+            "from": "999ddffa-ba21-4bb3-a7c4-01ec94bd90d8",
+            "to": "75be6912-ed8b-4853-8f2e-7acf3b5c2a07",
+            "fromPort": "",
+            "toPort": ""
+        },
+        {
+            "from": "a2fa7645-4f30-471b-8f5b-673eb8606539",
+            "to": "9f3bb32e-3eb0-4c24-8a7e-9ecb4938eb91",
+            "fromPort": "",
+            "toPort": ""
+        },
+        {
+            "from": "75be6912-ed8b-4853-8f2e-7acf3b5c2a07",
+            "to": "a2fa7645-4f30-471b-8f5b-673eb8606539",
+            "fromPort": "",
+            "toPort": ""
+        }
+    ]
+}
