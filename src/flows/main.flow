@@ -48,8 +48,8 @@
                     "() => {",
                     "   ",
                     "   let jibo = require('jibo');",
-                    "   let entity = jibo.lps.getClosestAudibleEntity();",
-                    "  //  let entity = jibo.lps.getClosestVisualEntity();",
+                    "  //  let entity = jibo.lps.getClosestAudibleEntity();",
+                    "   let entity = jibo.lps.getClosestVisualEntity();",
                     "",
                     "   // valid if we have data and confidence is at least 0.6",
                     "   let valid = (entity !== undefined && entity.confidence >= 0.2);",
@@ -123,6 +123,62 @@
                 ]
             },
             "name": "loop_lps"
+        },
+        {
+            "class": "Listen",
+            "clazz": "Listen",
+            "asset-pack": "core",
+            "loc": "-348.0282421875001 -87.09749999999997",
+            "id": "7d9933f3-64f3-4fe9-a05e-accdc851ec46",
+            "options": {
+                "getOptions": [
+                    "() => {",
+                    "    let options = {",
+                    "        heyJibo: false,",
+                    "        detectEnd: false,",
+                    "        incremental: false,",
+                    "        authenticateSpeaker: ''",
+                    "    }",
+                    "    return options;",
+                    "}"
+                ],
+                "rule": "rules/en-us/oobe/heyJibo.fst",
+                "onResult": [
+                    "(listener) => {",
+                    "    listener.on('cloud', function(asrResult, speakerIds) {",
+                    "",
+                    "    });",
+                    "}"
+                ]
+            },
+            "name": ""
+        },
+        {
+            "class": "Flow.Begin-Parallel",
+            "clazz": "Flow.Begin-Parallel",
+            "asset-pack": "core",
+            "loc": "-348.0282421875001 -218.736076250846",
+            "id": "06877f07-d10e-41fc-a1be-37c1f8f33623",
+            "options": {},
+            "name": ""
+        },
+        {
+            "class": "Mim.Announcement",
+            "clazz": "Mim.Announcement",
+            "asset-pack": "core",
+            "loc": "-328.43329874915395 -8.819999999999936",
+            "options": {
+                "mimPath": "mims\\en-us\\oobe\\StartWithYou.mim",
+                "getPromptData": [
+                    "() => {",
+                    "\treturn {};",
+                    "}",
+                    "",
+                    ""
+                ]
+            },
+            "id": "6d79eab9-9d0a-4a90-ae00-974183253ab8",
+            "name": "Start With You"
         }
     ],
     "linkDataArray": [
@@ -149,6 +205,19 @@
         {
             "from": "9f2ffcc1-be07-448e-b080-ebc21856f63f",
             "to": "5b253dbf-64c9-48ef-9230-9dfa96d85f81",
+            "fromPort": "",
+            "toPort": "",
+            "text": ""
+        },
+        {
+            "from": "06877f07-d10e-41fc-a1be-37c1f8f33623",
+            "to": "7d9933f3-64f3-4fe9-a05e-accdc851ec46",
+            "fromPort": "",
+            "toPort": ""
+        },
+        {
+            "from": "7d9933f3-64f3-4fe9-a05e-accdc851ec46",
+            "to": "6d79eab9-9d0a-4a90-ae00-974183253ab8",
             "fromPort": "",
             "toPort": "",
             "text": ""

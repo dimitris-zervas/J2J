@@ -1,0 +1,3 @@
+TopRule = $* (
+        (hey Jibo) | (hello Jibo) | hello | hey | Jibo
+    ){cmd='init'} $*;

@@ -1,27 +1,34 @@
 {
-  "mim_id": "StartWithYou",
-  "skill_id": "oobe",
-  "mim_type": "announcement",
-  "rule_name": "N/A",
-  "rule_slots": "",
-  "screen_slots_available": false,
-  "sample_utterances": "",
-  "timeout": 0,
-  "max_tries": null,
-  "force_confirmation": false,
-  "barge_in": true,
-  "photo_quality_light": false,
-  "prompts": [
-    {
-      "mim_id": "StartWithYou",
-      "prompt_category": "Entry-Core",
-      "prompt_sub_category": "AN",
-      "index": 1,
-      "condition": "",
-      "prompt": "I'll start with you, and then I can meet any others who are here. And if somebody's not home right now, I can meet them later.",
-      "media": "TTS",
-      "extra": "",
-      "prompt_id": "StartWithYou_AN_1"
-    }
-  ]
+	"mim_id": "StartWithYou",
+	"skill_id": "oobe",
+	"mim_type": "announcement",
+	"rule_name": "N/A",
+	"rule_slots": "",
+	"screen_slots_available": false,
+	"timeout": 0,
+	"max_tries": null,
+	"force_confirmation": false,
+	"barge_in": true,
+	"photo_quality_light": false,
+	"prompts": [
+		{
+			"mim_id": "StartWithYou",
+			"prompt_category": "Entry-Core",
+			"prompt_sub_category": "AN",
+			"index": 1,
+			"condition": "",
+			"prompt": "Hello Enric",
+			"media": "TTS",
+			"extra": "",
+			"prompt_id": "StartWithYou_AN_1",
+			"weight": 1
+		}
+	],
+	"gui": null,
+	"no_matches_for_gui": 0,
+	"no_inputs_for_gui": 0,
+	"es_auto_tagging": true,
+	"parse_all_asr": false,
+	"thanks_handling": "ignore",
+	"notes": ""
 }
