@@ -1,5 +1,5 @@
 {
-	"mim_type": "question",
+	"mim_type": "announcement",
 	"rule_name": "rules/en-us/oobe/heyJibo.fst",
 	"gui": null,
 	"timeout": 6,
@@ -13,7 +13,7 @@
 	"prompts": [
 		{
 			"prompt_category": "Entry-Core",
-			"prompt_sub_category": "Q",
+			"prompt_sub_category": "AN",
 			"index": 1,
 			"condition": "",
 			"prompt": "Alright Jibo, let´s go to the next step",
@@ -23,7 +23,7 @@
 		},
 		{
 			"prompt_category": "Entry-Core",
-			"prompt_sub_category": "Q",
+			"prompt_sub_category": "AN",
 			"index": 1,
 			"condition": "",
 			"prompt": "Go to the next step",
@@ -33,7 +33,7 @@
 		},
 		{
 			"prompt_category": "Entry-Core",
-			"prompt_sub_category": "Q",
+			"prompt_sub_category": "AN",
 			"index": 1,
 			"condition": "",
 			"prompt": "Ok Jibo, what's next?",

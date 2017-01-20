@@ -1,3 +1,9 @@
-TopRule = $* (
-        (hey Jibo) | (hello Jibo) | hello | hey | Jibo
-    ){cmd='init'} $*;
+# ------- FACTORY RULES
+TopRule = $*  ($*) ?
+
+            ($INIT {cmd = 'init'}) ?
+            ($READY {cmd = 'next'})
+
+             $*;
+READY = ready | (let me know) | (are ready);
+INIT = hello | hey | (hey jibo) ;

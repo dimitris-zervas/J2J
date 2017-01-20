@@ -9,7 +9,7 @@
         {
             "class": "Flow.Begin",
             "name": "Begin",
-            "loc": "-308.171875 -500.5",
+            "loc": "-329.99900817871094 -558.9324999999999",
             "id": "943fb90c-8699-4eb6-9de1-a1cddc841c94",
             "options": {
                 "inputParameters": [
@@ -24,24 +24,10 @@
             "clazz": "Flow.Begin"
         },
         {
-            "class": "Flow.Catch",
-            "loc": "-112.171875 -469.5",
-            "id": "5f29c172-2b9e-46b3-bbe6-45b54f32014f",
-            "options": {
-                "getTransition": [
-                    "(exception, payload) => {",
-                    "\treturn '';",
-                    "}"
-                ]
-            },
-            "name": "~InteractionError",
-            "clazz": "Flow.Catch"
-        },
-        {
             "class": "LookAt",
             "clazz": "LookAt",
             "asset-pack": "core",
-            "loc": "-323.171875 -304",
+            "loc": "-134.95445312499996 -343.69",
             "id": "5b253dbf-64c9-48ef-9230-9dfa96d85f81",
             "options": {
                 "getTarget": [
@@ -97,7 +83,7 @@
             "class": "Flow.Eval",
             "clazz": "Flow.Eval",
             "asset-pack": "core",
-            "loc": "-303.6392161075524 -391",
+            "loc": "-115.42179423255237 -448.33000000000004",
             "id": "2f085b6a-43cc-4353-b412-436c7c5481f9",
             "options": {
                 "Script": [
@@ -113,7 +99,7 @@
             "class": "Flow.Eval",
             "clazz": "Flow.Eval",
             "asset-pack": "core",
-            "loc": "-165.10655721510483 -304",
+            "loc": "-124.21587687415393 -231.235",
             "id": "9f2ffcc1-be07-448e-b080-ebc21856f63f",
             "options": {
                 "Script": [
@@ -125,48 +111,10 @@
             "name": "loop_lps"
         },
         {
-            "class": "Listen",
-            "clazz": "Listen",
-            "asset-pack": "core",
-            "loc": "-348.0282421875001 -87.09749999999997",
-            "id": "7d9933f3-64f3-4fe9-a05e-accdc851ec46",
-            "options": {
-                "getOptions": [
-                    "() => {",
-                    "    let options = {",
-                    "        heyJibo: false,",
-                    "        detectEnd: false,",
-                    "        incremental: false,",
-                    "        authenticateSpeaker: ''",
-                    "    }",
-                    "    return options;",
-                    "}"
-                ],
-                "rule": "rules/en-us/oobe/heyJibo.fst",
-                "onResult": [
-                    "(listener) => {",
-                    "    listener.on('cloud', function(asrResult, speakerIds) {",
-                    "",
-                    "    });",
-                    "}"
-                ]
-            },
-            "name": ""
-        },
-        {
-            "class": "Flow.Begin-Parallel",
-            "clazz": "Flow.Begin-Parallel",
-            "asset-pack": "core",
-            "loc": "-348.0282421875001 -218.736076250846",
-            "id": "06877f07-d10e-41fc-a1be-37c1f8f33623",
-            "options": {},
-            "name": ""
-        },
-        {
             "class": "Mim.Announcement",
             "clazz": "Mim.Announcement",
             "asset-pack": "core",
-            "loc": "-328.43329874915395 -8.819999999999936",
+            "loc": "-398.1875651065758 -231.235",
             "options": {
                 "mimPath": "mims\\en-us\\oobe\\StartWithYou.mim",
                 "getPromptData": [
@@ -179,15 +127,159 @@
             },
             "id": "6d79eab9-9d0a-4a90-ae00-974183253ab8",
             "name": "Start With You"
+        },
+        {
+            "class": "Mim.Question",
+            "clazz": "Mim.Question",
+            "asset-pack": "core",
+            "loc": "-335.2604319278649 -392.5071525016921",
+            "id": "84ae1169-73cc-4a40-adb3-29e07fcc5055",
+            "options": {
+                "mimPath": "mims\\en-us\\oobe\\AreYouOwner.mim",
+                "getPromptData": [
+                    "() => {",
+                    "\tlet say = notepad.noSay;",
+                    "\treturn {say};",
+                    "}",
+                    "// \t\t\t\"prompt\": \"Are you ${owner}?\",",
+                    "// \t\t\t\"prompt\": \"I'm supposed to meet ${owner}. Is that you?\",",
+                    "// \t\t\t\"prompt\": \"I'm trying to find my new owner, ${owner}. Is that you?\",",
+                    "// \t\t\t\"prompt\": \"I didn't catch that. Are you ${owner}?\",",
+                    "// \t\t\t\"prompt\": \"Maybe I'm still groggy from the trip. Will you tap yes or no on my screen, to tell me if you're ${owner}?\",",
+                    "",
+                    ""
+                ],
+                "onStatus": [
+                    "(status) => {",
+                    "\tlet mimState = status.state;",
+                    "\tlet asrResults = status.asrResults;",
+                    "}"
+                ],
+                "onSuccess": [
+                    "(results) => {",
+                    "\tlet mimState = results.state;",
+                    "\tlet asrResults = results.asrResults;",
+                    "\tlet transition = results.firstGrammarTag;",
+                    "\tnotepad.Command = asrResults.NLParse.cmd;",
+                    "\tlet cmd = notepad.Command;",
+                    "\tswitch (cmd) {",
+                    "\t\tcase ('init'):",
+                    "\t\t\ttransition = 'init';",
+                    "\t\t\tbreak;",
+                    "\t\tcase ('go_to_next_step'):",
+                    "\t\t\ttransition = 'next';",
+                    "\t\t\tbreak;",
+                    "\t\tcase ('go_to_previous_step'):",
+                    "\t\t\ttransition = 'prev';",
+                    "\t\t\tbreak;",
+                    "\t}",
+                    "\t",
+                    "\treturn transition;",
+                    "}",
+                    "//Transitions: undefined",
+                    ""
+                ],
+                "onFailure": [
+                    "(results) => {",
+                    "\tlet mimState = results.state;",
+                    "\tlet asrResults = results.asrResults;",
+                    "\tlet exception = results.exception;",
+                    "\treturn exception;",
+                    "}"
+                ]
+            },
+            "name": "Init"
+        },
+        {
+            "class": "Flow.Begin-Parallel",
+            "clazz": "Flow.Begin-Parallel",
+            "asset-pack": "core",
+            "loc": "-181.55074218750005 -552.3525000000001",
+            "id": "35db231f-4c65-4893-b273-cb895cce2dfc",
+            "options": {},
+            "name": ""
+        },
+        {
+            "class": "Mim.Announcement",
+            "clazz": "Mim.Announcement",
+            "asset-pack": "core",
+            "loc": "-156.21587687415393 -95.91750000000008",
+            "options": {
+                "mimPath": "mims\\en-us\\oobe\\prevStep.mim",
+                "getPromptData": [
+                    "() => {",
+                    "\tnotepad.noSay = true;",
+                    "\treturn {};",
+                    "}",
+                    "",
+                    ""
+                ]
+            },
+            "id": "5deafb43-b370-479b-a89b-16ae010fa934",
+            "name": "prev Step"
+        },
+        {
+            "class": "Mim.Announcement",
+            "clazz": "Mim.Announcement",
+            "asset-pack": "core",
+            "loc": "-376.0529319278649 -95.91750000000008",
+            "options": {
+                "mimPath": "mims\\en-us\\oobe\\nextStep.mim",
+                "getPromptData": [
+                    "() => {",
+                    "\tnotepad.noSay = true;",
+                    "\treturn {};",
+                    "}",
+                    "",
+                    ""
+                ]
+            },
+            "id": "efd6b4f6-1f49-401a-9d1a-7cbeab305fda",
+            "name": "next Step"
+        },
+        {
+            "class": "Flow.Eval",
+            "clazz": "Flow.Eval",
+            "asset-pack": "core",
+            "loc": "-233.17187500000003 -219.435",
+            "id": "da24a50d-ec4a-451a-a48a-c892dab6abe7",
+            "options": {
+                "Script": [
+                    "() => {",
+                    "  console.log(\"jordi\");",
+                    "  if (notepad.flag == true) {",
+                    "    return 'next';",
+                    "    notepad.flag = false;",
+                    "    console.log(notepad.flag);",
+                    "  }else {",
+                    "    console.log(\"eep\");",
+                    "    return 'prev';",
+                    "    notepad.flag = true;",
+                    "  }",
+                    "}"
+                ]
+            },
+            "name": ""
+        },
+        {
+            "class": "Flow.Eval",
+            "clazz": "Flow.Eval",
+            "asset-pack": "core",
+            "loc": "-326.4647666446618 -458.64000000000004",
+            "id": "d77e5b5d-3bcd-4efc-baae-5a7e7a6e2915",
+            "options": {
+                "Script": [
+                    "() => {",
+                    "    notepad.flag = true;",
+                    "    notepad.noSay = false;",
+                    "    return '';",
+                    "}"
+                ]
+            },
+            "name": ""
         }
     ],
     "linkDataArray": [
-        {
-            "from": "943fb90c-8699-4eb6-9de1-a1cddc841c94",
-            "to": "2f085b6a-43cc-4353-b412-436c7c5481f9",
-            "fromPort": "",
-            "toPort": ""
-        },
         {
             "from": "2f085b6a-43cc-4353-b412-436c7c5481f9",
             "to": "5b253dbf-64c9-48ef-9230-9dfa96d85f81",
@@ -210,14 +302,69 @@
             "text": ""
         },
         {
-            "from": "06877f07-d10e-41fc-a1be-37c1f8f33623",
-            "to": "7d9933f3-64f3-4fe9-a05e-accdc851ec46",
+            "from": "84ae1169-73cc-4a40-adb3-29e07fcc5055",
+            "to": "6d79eab9-9d0a-4a90-ae00-974183253ab8",
+            "fromPort": "",
+            "toPort": "",
+            "text": "init"
+        },
+        {
+            "from": "6d79eab9-9d0a-4a90-ae00-974183253ab8",
+            "to": "84ae1169-73cc-4a40-adb3-29e07fcc5055",
+            "fromPort": "",
+            "toPort": "",
+            "text": ""
+        },
+        {
+            "from": "35db231f-4c65-4893-b273-cb895cce2dfc",
+            "to": "2f085b6a-43cc-4353-b412-436c7c5481f9",
             "fromPort": "",
             "toPort": ""
         },
         {
-            "from": "7d9933f3-64f3-4fe9-a05e-accdc851ec46",
-            "to": "6d79eab9-9d0a-4a90-ae00-974183253ab8",
+            "from": "943fb90c-8699-4eb6-9de1-a1cddc841c94",
+            "to": "d77e5b5d-3bcd-4efc-baae-5a7e7a6e2915",
+            "fromPort": "",
+            "toPort": ""
+        },
+        {
+            "from": "d77e5b5d-3bcd-4efc-baae-5a7e7a6e2915",
+            "to": "84ae1169-73cc-4a40-adb3-29e07fcc5055",
+            "fromPort": "",
+            "toPort": "",
+            "text": ""
+        },
+        {
+            "from": "84ae1169-73cc-4a40-adb3-29e07fcc5055",
+            "to": "da24a50d-ec4a-451a-a48a-c892dab6abe7",
+            "fromPort": "",
+            "toPort": "",
+            "text": "next"
+        },
+        {
+            "from": "da24a50d-ec4a-451a-a48a-c892dab6abe7",
+            "to": "efd6b4f6-1f49-401a-9d1a-7cbeab305fda",
+            "fromPort": "",
+            "toPort": "",
+            "text": "next"
+        },
+        {
+            "from": "da24a50d-ec4a-451a-a48a-c892dab6abe7",
+            "to": "5deafb43-b370-479b-a89b-16ae010fa934",
+            "fromPort": "",
+            "toPort": "",
+            "text": "prev"
+        },
+        {
+            "from": "5deafb43-b370-479b-a89b-16ae010fa934",
+            "to": "84ae1169-73cc-4a40-adb3-29e07fcc5055",
+            "fromPort": "",
+            "toPort": "",
+            "text": ""
+        },
+        {
+            "from": "efd6b4f6-1f49-401a-9d1a-7cbeab305fda",
+            "to": "84ae1169-73cc-4a40-adb3-29e07fcc5055",
             "fromPort": "",
             "toPort": "",
             "text": ""
